@@ -1,3 +1,4 @@
+package hash_calculators;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

@@ -1,3 +1,5 @@
+package hash_calculators;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

@@ -3,6 +3,10 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import hash_calculators.DirectoryMD5HashCalculator;
+import hash_calculators.FileMD5HashCalculator;
+import hash_calculators.MD5HashCalculator;
+
 public class MainDebug {
   public static void main(String args[]) throws Exception {
     // stringExample();
