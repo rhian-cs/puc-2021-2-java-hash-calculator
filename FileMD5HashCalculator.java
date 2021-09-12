@@ -1,21 +1,14 @@
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
 
 public class FileMD5HashCalculator {
-  byte[] fileBytes;
+  public static String getHash(String path) throws NoSuchAlgorithmException, IOException {
+    File file = new File(path);
+    byte[] fileBytes = Files.readAllBytes(file.toPath());
 
-  public FileMD5HashCalculator(String path) {
-    try {
-      File file = new File(path);
-      fileBytes = Files.readAllBytes(file.toPath());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  public String getHash() throws NoSuchAlgorithmException {
     return MD5HashCalculator.getHash(fileBytes);
   }
 }
