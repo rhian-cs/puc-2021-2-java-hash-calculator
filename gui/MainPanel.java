@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,10 +20,15 @@ public class MainPanel extends JPanel {
   private static final int LABEL_INNER_PADDING = 0;
   private static final int BUTTON_INNER_PADDING = 20;
 
-  GridBagConstraints gbc;
+  private GridBagConstraints gbc;
+  private Font standardFont;
+  private Font buttonFont;
 
   public MainPanel() {
     super(new GridBagLayout());
+
+    standardFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
+    buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
 
     defineGridBagConstraints();
     addComponents();
@@ -59,13 +65,17 @@ public class MainPanel extends JPanel {
   private void addLabel(String labelText) {
     setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM_CLOSE);
     setInnerPadding(LABEL_INNER_PADDING, LABEL_INNER_PADDING);
-    JLabel label = new JLabel(labelText, SwingConstants.CENTER);
+    JLabel label = new JLabel(labelText, SwingConstants.LEFT);
+    label.setFont(standardFont);
     add(label, gbc);
   }
 
   private void addButton(String buttonText) {
     setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM);
     setInnerPadding(BUTTON_INNER_PADDING, BUTTON_INNER_PADDING);
-    add(new JButton(buttonText), gbc);
+
+    JButton button = new JButton(buttonText);
+    button.setFont(buttonFont);
+    add(button, gbc);
   }
 }
