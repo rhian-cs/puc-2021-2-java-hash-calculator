@@ -7,6 +7,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class MainPanel extends JPanel {
   private static final int DEFAULT_OUTER_PADDING_LEFT = 10;
@@ -46,9 +47,8 @@ public class MainPanel extends JPanel {
   }
 
   private void addComponents() {
-    addLabelWithButton("Please press:", "Button 1");
-    addLabelWithButton("Please press:", "Button 2");
-    addLabelWithButton("Please press:", "Button 3");
+    addLabelWithButton("Select a file or directory to calculate it's hash:", "Click to select");
+    addButton("Calculate hash!");
   }
 
   private void addLabelWithButton(String labelText, String buttonText) {
