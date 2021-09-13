@@ -3,6 +3,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import gui.MainWindow;
 import hash_calculators.DirectoryMD5HashCalculator;
 import hash_calculators.FileMD5HashCalculator;
 import hash_calculators.MD5HashCalculator;
@@ -11,7 +12,8 @@ public class MainDebug {
   public static void main(String args[]) throws Exception {
     // stringExample();
     // fileExample();
-    directoryExample();
+    // directoryExample();
+    guiExample();
   }
 
   private static void stringExample() throws Exception {
@@ -35,5 +37,9 @@ public class MainDebug {
     for (String hash : hashList) {
       System.out.println(hash);
     }
+  }
+
+  private static void guiExample() throws Exception {
+    MainWindow window = new MainWindow();
   }
 }
