@@ -1,49 +1,70 @@
 package gui;
 
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainPanel extends JPanel {
-  private static final int INNER_PADDING = 10;
+  private static final int DEFAULT_OUTER_PADDING_LEFT = 10;
+  private static final int DEFAULT_OUTER_PADDING_RIGHT = 10;
+  private static final int DEFAULT_OUTER_PADDING_TOP = 10;
+  private static final int DEFAULT_OUTER_PADDING_BOTTOM = 30;
+  private static final int DEFAULT_OUTER_PADDING_BOTTOM_CLOSE = 0;
+
+  private static final int LABEL_INNER_PADDING = 0;
+  private static final int BUTTON_INNER_PADDING = 20;
 
   GridBagConstraints gbc;
 
   public MainPanel() {
     super(new GridBagLayout());
 
-    gbc = new GridBagConstraints();
     defineGridBagConstraints();
-
     addComponents();
   }
 
   private void defineGridBagConstraints() {
+    gbc = new GridBagConstraints();
+
     gbc.weightx = 1;
-    gbc.ipadx = 20;
-    gbc.ipady = 30;
-    gbc.insets = panelInsets();
     gbc.fill = GridBagConstraints.HORIZONTAL;
     gbc.gridwidth = GridBagConstraints.REMAINDER;
   }
 
-  private Insets panelInsets() {
-    return new Insets(INNER_PADDING, INNER_PADDING, INNER_PADDING, INNER_PADDING);
+  private void setBottomOuterPadding(int bottomOuterPadding) {
+    gbc.insets = new Insets(DEFAULT_OUTER_PADDING_TOP, DEFAULT_OUTER_PADDING_LEFT, bottomOuterPadding,
+        DEFAULT_OUTER_PADDING_RIGHT);
+  }
+
+  private void setInnerPadding(int paddingX, int paddingY) {
+    gbc.ipadx = paddingX;
+    gbc.ipady = paddingY;
   }
 
   private void addComponents() {
-    addButton("Button 1");
-    addButton("Button 2");
-    addButton("Button 3");
+    addLabelWithButton("Please press:", "Button 1");
+    addLabelWithButton("Please press:", "Button 2");
+    addLabelWithButton("Please press:", "Button 3");
   }
 
-  private void addButton(String label) {
-    JButton button = new JButton(label);
+  private void addLabelWithButton(String labelText, String buttonText) {
+    addLabel(labelText);
+    addButton(buttonText);
+  }
 
-    add(button, gbc);
+  private void addLabel(String labelText) {
+    setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM_CLOSE);
+    setInnerPadding(LABEL_INNER_PADDING, LABEL_INNER_PADDING);
+    add(new JLabel(labelText), gbc);
+  }
+
+  private void addButton(String buttonText) {
+    setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM);
+    setInnerPadding(BUTTON_INNER_PADDING, BUTTON_INNER_PADDING);
+    add(new JButton(buttonText), gbc);
   }
 }
