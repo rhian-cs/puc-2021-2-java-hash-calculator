@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 import gui.actions.CalculateHashAction;
 import gui.actions.SelectDirectoryAction;
+import gui.GlobalState;
 
 public class MainPanel extends JPanel {
   private static final int DEFAULT_OUTER_PADDING_LEFT = 25;
@@ -27,9 +28,12 @@ public class MainPanel extends JPanel {
   private GridBagConstraints gbc;
   private Font standardFont;
   private Font buttonFont;
+  private GlobalState state;
 
   public MainPanel() {
     super(new GridBagLayout());
+
+    state = new GlobalState();
 
     standardFont = new Font(Font.SANS_SERIF, Font.PLAIN, 18);
     buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
@@ -58,8 +62,8 @@ public class MainPanel extends JPanel {
 
   private void addComponents() {
     addLabelWithButton("Select a file or directory to calculate it's hash:", "Click to select",
-        new SelectDirectoryAction());
-    addButton("Calculate hash!", new CalculateHashAction());
+        new SelectDirectoryAction(state));
+    addButton("Calculate hash!", new CalculateHashAction(state));
   }
 
   private void addLabelWithButton(String labelText, String buttonText, ActionListener listener) {
