@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import gui.actions.CalculateHashAction;
+import gui.actions.SelectDirectoryAction;
 
 public class MainPanel extends JPanel {
   private static final int DEFAULT_OUTER_PADDING_LEFT = 25;
@@ -53,13 +57,14 @@ public class MainPanel extends JPanel {
   }
 
   private void addComponents() {
-    addLabelWithButton("Select a file or directory to calculate it's hash:", "Click to select");
-    addButton("Calculate hash!");
+    addLabelWithButton("Select a file or directory to calculate it's hash:", "Click to select",
+        new SelectDirectoryAction());
+    addButton("Calculate hash!", new CalculateHashAction());
   }
 
-  private void addLabelWithButton(String labelText, String buttonText) {
+  private void addLabelWithButton(String labelText, String buttonText, ActionListener listener) {
     addLabel(labelText);
-    addButton(buttonText);
+    addButton(buttonText, listener);
   }
 
   private void addLabel(String labelText) {
@@ -70,12 +75,13 @@ public class MainPanel extends JPanel {
     add(label, gbc);
   }
 
-  private void addButton(String buttonText) {
+  private void addButton(String buttonText, ActionListener listener) {
     setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM);
     setInnerPadding(BUTTON_INNER_PADDING, BUTTON_INNER_PADDING);
 
     JButton button = new JButton(buttonText);
     button.setFont(buttonFont);
+    button.addActionListener(listener);
     add(button, gbc);
   }
 }
