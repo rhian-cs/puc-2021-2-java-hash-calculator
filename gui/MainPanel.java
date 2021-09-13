@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 public class MainPanel extends JPanel {
-  private static final int DEFAULT_OUTER_PADDING_LEFT = 10;
-  private static final int DEFAULT_OUTER_PADDING_RIGHT = 10;
+  private static final int DEFAULT_OUTER_PADDING_LEFT = 25;
+  private static final int DEFAULT_OUTER_PADDING_RIGHT = 25;
   private static final int DEFAULT_OUTER_PADDING_TOP = 10;
   private static final int DEFAULT_OUTER_PADDING_BOTTOM = 30;
   private static final int DEFAULT_OUTER_PADDING_BOTTOM_CLOSE = 0;
@@ -59,7 +59,8 @@ public class MainPanel extends JPanel {
   private void addLabel(String labelText) {
     setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM_CLOSE);
     setInnerPadding(LABEL_INNER_PADDING, LABEL_INNER_PADDING);
-    add(new JLabel(labelText), gbc);
+    JLabel label = new JLabel(labelText, SwingConstants.CENTER);
+    add(label, gbc);
   }
 
   private void addButton(String buttonText) {

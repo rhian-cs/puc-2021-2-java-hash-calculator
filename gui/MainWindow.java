@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame {
   private static final String TITLE = "Hash Calculator";
   private static final int WINDOW_WIDTH = 480;
-  private static final int WINDOW_HEIGHT = 640;
+  private static final int WINDOW_HEIGHT = 240;
 
   public MainWindow() {
     super(TITLE);
