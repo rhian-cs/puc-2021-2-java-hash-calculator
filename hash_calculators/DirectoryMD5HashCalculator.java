@@ -9,6 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class DirectoryMD5HashCalculator {
+  private static final int MAX_FILE_TREE_DEPTH = 1;
+
   public static ArrayList<String> getHashes(String path) throws NoSuchAlgorithmException, IOException {
     File file = new File(path);
     ArrayList<String> hashes = new ArrayList<String>();
@@ -32,7 +34,7 @@ public class DirectoryMD5HashCalculator {
       throws NoSuchAlgorithmException, IOException {
     Path directory = Paths.get(directoryPath);
 
-    Files.walk(directory).forEach(filePath -> {
+    Files.walk(directory, MAX_FILE_TREE_DEPTH).forEach(filePath -> {
       if (Files.isRegularFile(filePath)) {
         try {
           addHashToList(hashes, filePath.toString());
