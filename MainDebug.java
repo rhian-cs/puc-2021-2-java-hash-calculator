@@ -15,8 +15,8 @@ public class MainDebug {
 
     try {
       // fileExample();
-      directoryExample();
-      // guiExample();
+      // directoryExample();
+      guiExample();
     } catch (Exception e) {
       e.printStackTrace();
     }
