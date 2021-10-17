@@ -58,7 +58,7 @@ public abstract class DefaultPanel extends JPanel {
     gbc.ipady = paddingY;
   }
 
-  protected void addLabelWithButton(String labelText, String buttonText, ActionListener listener) {
+  protected void addButtonWithLabel(String labelText, String buttonText, ActionListener listener) {
     addLabel(labelText);
     addButton(buttonText, listener);
   }
