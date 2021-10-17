@@ -1,7 +1,6 @@
 package hash_calculators;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.DigestInputStream;
@@ -10,11 +9,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class FileHashCalculator {
   public static String getHash(String filename, String hashAlgorithmName) throws NoSuchAlgorithmException, IOException {
-    File file = new File(filename);
     MessageDigest hashAlgorithm = MessageDigest.getInstance(hashAlgorithmName);
 
     // Set up streams
-    FileInputStream fis = new FileInputStream(file);
+    FileInputStream fis = new FileInputStream(filename);
     BufferedInputStream bis = new BufferedInputStream(fis);
     DigestInputStream dis = new DigestInputStream(bis, hashAlgorithm);
 
