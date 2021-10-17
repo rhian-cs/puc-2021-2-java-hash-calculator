@@ -3,6 +3,9 @@ package gui.actions;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 
 import gui.GlobalState;
@@ -18,6 +21,7 @@ public class CalculateHashAction implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent ev) {
     if (state.currentDirectory == "") {
+      JOptionPane.showMessageDialog(null, "No file or directory was provided!", "Error", JOptionPane.ERROR_MESSAGE);
       return;
     }
 
