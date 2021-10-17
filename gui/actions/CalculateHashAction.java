@@ -1,6 +1,7 @@
 package gui.actions;
 
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -21,15 +22,22 @@ public class CalculateHashAction implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent ev) {
     if (state.currentDirectory == "") {
-      JOptionPane.showMessageDialog(null, "No file or directory was provided!", "Error", JOptionPane.ERROR_MESSAGE);
+      errorDialog("No file or directory was provided!");
       return;
     }
 
     try {
       DirectoryMD5HashCalculator.calculateAndOutputHashes(state.currentDirectory);
-    } catch (NoSuchAlgorithmException | IOException ex) {
-      ex.printStackTrace();
-      return;
+    } catch (NoSuchAlgorithmException e) {
+      errorDialog("The specified hash algorithm doesn't exist!");
+    } catch (FileNotFoundException e) {
+      errorDialog("The specified file or directory doesn't exist!");
+    } catch (IOException e) {
+      errorDialog("An error occurred when attempting to read the file or directory!");
     }
+  }
+
+  private void errorDialog(String message) {
+    JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
   }
 }
