@@ -22,7 +22,6 @@ public class CalculateHashAction implements ActionListener {
       return;
     }
 
-    ArrayList<String> hashList;
     try {
       DirectoryMD5HashCalculator.calculateAndOutputHashes(state.currentDirectory);
     } catch (NoSuchAlgorithmException | IOException ex) {

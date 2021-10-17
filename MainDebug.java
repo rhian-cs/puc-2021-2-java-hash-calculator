@@ -36,6 +36,6 @@ public class MainDebug {
   }
 
   private static void guiExample() throws Exception {
-    MainWindow window = new MainWindow();
+    new MainWindow();
   }
 }
