@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class DirectoryMD5HashCalculator {
   private static final int MAX_FILE_TREE_DEPTH = 1;

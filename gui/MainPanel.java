@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 
 import gui.actions.CalculateHashAction;
 import gui.actions.SelectDirectoryAction;
-import gui.GlobalState;
 
 public class MainPanel extends JPanel {
   private static final int DEFAULT_OUTER_PADDING_LEFT = 25;

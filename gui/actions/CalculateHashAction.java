@@ -3,7 +3,6 @@ package gui.actions;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import gui.GlobalState;

@@ -1,9 +1,3 @@
-
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-
 import gui.MainWindow;
 import hash_calculators.DirectoryMD5HashCalculator;
 import hash_calculators.FileHashCalculator;
