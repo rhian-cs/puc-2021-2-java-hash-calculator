@@ -8,7 +8,7 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class HashCalculatorV2 {
+public class FileHashCalculator {
   public static String getHash(String filename, String hashAlgorithmName) throws NoSuchAlgorithmException, IOException {
     File file = new File(filename);
     MessageDigest hashAlgorithm = MessageDigest.getInstance(hashAlgorithmName);

@@ -27,7 +27,7 @@ public class DirectoryMD5HashCalculator {
   private static void addHashToList(ArrayList<String> hashes, String path)
       throws NoSuchAlgorithmException, IOException {
 
-    hashes.add(FileMD5HashCalculator.getHash(path));
+    hashes.add(FileHashCalculator.getHash(path, "MD5"));
   }
 
   private static ArrayList<String> getHashFromAllFiles(ArrayList<String> hashes, String directoryPath)
