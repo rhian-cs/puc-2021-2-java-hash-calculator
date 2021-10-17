@@ -17,22 +17,17 @@ public class CalculateHashAction implements ActionListener {
   }
 
   @Override
-  public void actionPerformed(ActionEvent e) {
+  public void actionPerformed(ActionEvent ev) {
     if (state.currentDirectory == "") {
       return;
     }
 
     ArrayList<String> hashList;
     try {
-      hashList = DirectoryMD5HashCalculator.getHashes(state.currentDirectory);
-    } catch (NoSuchAlgorithmException | IOException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
+      DirectoryMD5HashCalculator.calculateAndOutputHashes(state.currentDirectory);
+    } catch (NoSuchAlgorithmException | IOException ex) {
+      ex.printStackTrace();
       return;
-    }
-
-    for (String hash : hashList) {
-      System.out.println(hash);
     }
   }
 }

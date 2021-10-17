@@ -13,9 +13,13 @@ public class MainDebug {
     System.out.println("");
     long startTime = System.nanoTime();
 
-    fileExample();
-    // directoryExample();
-    // guiExample();
+    try {
+      // fileExample();
+      directoryExample();
+      // guiExample();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
     long stopTime = System.nanoTime();
     double seconds = (stopTime - startTime) * 0.000000001;
@@ -23,20 +27,12 @@ public class MainDebug {
     System.out.println("\nExecution finished after " + seconds + " seconds.");
   }
 
-  private static void fileExample() {
-    try {
-      System.out.println(FileHashCalculator.getHash("tmp/bigfile", "MD5"));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+  private static void fileExample() throws Exception {
+    System.out.println(FileHashCalculator.getHash("tmp/bigfile", "MD5"));
   }
 
   private static void directoryExample() throws Exception {
-    ArrayList<String> hashList = DirectoryMD5HashCalculator.getHashes("tmp/directory/");
-
-    for (String hash : hashList) {
-      System.out.println(hash);
-    }
+    DirectoryMD5HashCalculator.calculateAndOutputHashes("tmp/directory/");
   }
 
   private static void guiExample() throws Exception {
