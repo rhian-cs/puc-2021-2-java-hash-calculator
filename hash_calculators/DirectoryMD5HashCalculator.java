@@ -22,13 +22,16 @@ public class DirectoryMD5HashCalculator {
   }
 
   private static void calculateAndOutputFileHash(String path) throws NoSuchAlgorithmException, IOException {
+    String hashString = FileHashCalculator.getHash(path, "MD5");
 
-    System.out.println(FileHashCalculator.getHash(path, "MD5"));
+    System.out.println(path + ";\t" + hashString);
   }
 
   private static void calculateAndOutputAllFilesHashes(String directoryPath)
       throws NoSuchAlgorithmException, IOException {
     Path directory = Paths.get(directoryPath);
+
+    System.out.println(directoryPath);
 
     Files.walk(directory, MAX_FILE_TREE_DEPTH).forEach(filePath -> {
       if (Files.isRegularFile(filePath)) {
