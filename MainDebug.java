@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 import gui.MainWindow;
 import hash_calculators.DirectoryMD5HashCalculator;
 import hash_calculators.FileHashCalculator;
@@ -30,6 +32,10 @@ public class MainDebug {
   }
 
   private static void guiExample() throws Exception {
-    new MainWindow();
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        new MainWindow();
+      }
+    });
   }
 }
