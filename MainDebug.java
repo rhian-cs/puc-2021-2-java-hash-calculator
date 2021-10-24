@@ -1,7 +1,7 @@
 import javax.swing.SwingUtilities;
 
 import gui.MainWindow;
-import hash_calculators.DirectoryMD5HashCalculator;
+import gui.workers.DirectoryHashWorker;
 import hash_calculators.FileHashCalculator;
 
 public class MainDebug {
@@ -25,10 +25,6 @@ public class MainDebug {
 
   private static void fileExample() throws Exception {
     System.out.println(FileHashCalculator.getHash("tmp/bigfile", "MD5"));
-  }
-
-  private static void directoryExample() throws Exception {
-    new DirectoryMD5HashCalculator("tmp/directory/").calculateAndOutputHashes();
   }
 
   private static void guiExample() throws Exception {

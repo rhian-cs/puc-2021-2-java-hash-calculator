@@ -11,16 +11,20 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import gui.components.FileSelector;
-import hash_calculators.DirectoryMD5HashCalculator;
+import gui.workers.DirectoryHashWorker;
 
 public class MainPanel extends DefaultPanel implements ActionListener {
 
   private JButton calculateHashButton;
+  private JButton cancelButton;
+  private DirectoryHashWorker directoryHashWorker;
 
   protected void addComponents() {
     addButtonWithLabel("Select a file or directory to calculate it's hash:", "Click to select directory", this);
 
     calculateHashButton = addButton("Calculate hash!", this);
+    cancelButton = addButton("Stop hashing", this);
+    cancelButton.setEnabled(false);
   }
 
   @Override
@@ -28,6 +32,11 @@ public class MainPanel extends DefaultPanel implements ActionListener {
     switch (ev.getActionCommand()) {
     case "Calculate hash!":
       calculateHashAction();
+      break;
+    case "Stop hashing":
+      calculateHashButton.setEnabled(true);
+      cancelButton.setEnabled(false);
+      directoryHashWorker.cancel(true);
       break;
     case "Click to select directory":
       state.currentDirectory = new FileSelector().call();
@@ -43,16 +52,15 @@ public class MainPanel extends DefaultPanel implements ActionListener {
 
     try {
       calculateHashButton.setEnabled(false);
-      DirectoryMD5HashCalculator calculator = new DirectoryMD5HashCalculator(state.currentDirectory);
-      calculator.calculateAndOutputHashes();
-    } catch (NoSuchAlgorithmException e) {
-      errorDialog("The specified hash algorithm doesn't exist!");
+      cancelButton.setEnabled(true);
+
+      (directoryHashWorker = new DirectoryHashWorker(state.currentDirectory, calculateHashButton, cancelButton))
+          .execute();
+
     } catch (FileNotFoundException e) {
       errorDialog("The specified file or directory doesn't exist!");
     } catch (IOException e) {
       errorDialog("An error occurred when attempting to read the file or directory!");
-    } finally {
-      calculateHashButton.setEnabled(true);
     }
   }
 

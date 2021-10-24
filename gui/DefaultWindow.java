@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 public class DefaultWindow extends JFrame {
   private static final int WINDOW_WIDTH = 480;
-  private static final int WINDOW_HEIGHT = 240;
+  private static final int WINDOW_HEIGHT = 480;
 
   public DefaultWindow(String title, JPanel contentPane) {
     super(title);
