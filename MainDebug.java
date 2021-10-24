@@ -28,7 +28,7 @@ public class MainDebug {
   }
 
   private static void directoryExample() throws Exception {
-    DirectoryMD5HashCalculator.calculateAndOutputHashes("tmp/directory/");
+    new DirectoryMD5HashCalculator("tmp/directory/").calculateAndOutputHashes();
   }
 
   private static void guiExample() throws Exception {

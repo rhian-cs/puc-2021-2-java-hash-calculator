@@ -27,7 +27,8 @@ public class CalculateHashAction implements ActionListener {
     }
 
     try {
-      DirectoryMD5HashCalculator.calculateAndOutputHashes(state.currentDirectory);
+      DirectoryMD5HashCalculator calculator = new DirectoryMD5HashCalculator(state.currentDirectory);
+      calculator.calculateAndOutputHashes();
     } catch (NoSuchAlgorithmException e) {
       errorDialog("The specified hash algorithm doesn't exist!");
     } catch (FileNotFoundException e) {
