@@ -71,13 +71,16 @@ public abstract class DefaultPanel extends JPanel {
     add(label, gbc);
   }
 
-  protected void addButton(String buttonText, ActionListener listener) {
+  protected JButton addButton(String buttonText, ActionListener listener) {
     setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM);
     setInnerPadding(BUTTON_INNER_PADDING, BUTTON_INNER_PADDING);
 
     JButton button = new JButton(buttonText);
     button.setFont(buttonFont);
+    button.setActionCommand(buttonText);
     button.addActionListener(listener);
     add(button, gbc);
+
+    return button;
   }
 }
