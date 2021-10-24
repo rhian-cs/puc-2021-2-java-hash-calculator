@@ -20,11 +20,7 @@ public class DirectoryMD5HashCalculator {
   public void calculateAndOutputHashes() throws NoSuchAlgorithmException, IOException {
     File file = new File(path);
 
-    if (file.isDirectory()) {
-      calculateAndOutputAllFilesHashes(path);
-    } else {
-      calculateAndOutputFileHash(path);
-    }
+    calculateAndOutputAllFilesHashes(path, file.isDirectory());
   }
 
   private long calculateFilesCount() throws IOException {
@@ -32,16 +28,13 @@ public class DirectoryMD5HashCalculator {
     return Files.walk(dir).parallel().filter(p -> !p.toFile().isDirectory()).count();
   }
 
-  private void calculateAndOutputFileHash(String path) throws NoSuchAlgorithmException, IOException {
-    String hashString = FileHashCalculator.getHash(path, "MD5");
-
-    System.out.println(path + ";\t" + hashString);
-  }
-
-  private void calculateAndOutputAllFilesHashes(String directoryPath) throws NoSuchAlgorithmException, IOException {
+  private void calculateAndOutputAllFilesHashes(String directoryPath, boolean isDirectory)
+      throws NoSuchAlgorithmException, IOException {
     Path directory = Paths.get(directoryPath);
 
-    System.out.println(directoryPath);
+    if (isDirectory) {
+      System.out.println(directoryPath);
+    }
 
     Files.walk(directory).forEach(filePath -> {
       if (Files.isRegularFile(filePath)) {
@@ -52,5 +45,11 @@ public class DirectoryMD5HashCalculator {
         }
       }
     });
+  }
+
+  private void calculateAndOutputFileHash(String path) throws NoSuchAlgorithmException, IOException {
+    String hashString = FileHashCalculator.getHash(path, "MD5");
+
+    System.out.println(path + ";\t" + hashString);
   }
 }
