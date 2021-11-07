@@ -54,7 +54,7 @@ public class MainPanel extends DefaultPanel implements ActionListener {
       calculateHashButton.setEnabled(false);
       cancelButton.setEnabled(true);
 
-      (directoryHashWorker = new DirectoryHashWorker(state.currentDirectory, calculateHashButton, cancelButton))
+      (directoryHashWorker = new DirectoryHashWorker(state.currentDirectory, calculateHashButton, cancelButton, "MD5"))
           .execute();
 
     } catch (FileNotFoundException e) {
