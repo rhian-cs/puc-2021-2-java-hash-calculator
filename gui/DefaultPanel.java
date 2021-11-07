@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -82,5 +83,22 @@ public abstract class DefaultPanel extends JPanel {
     add(button, gbc);
 
     return button;
+  }
+
+  protected JComboBox<String> addComboBoxWithLabel(String labelText, String[] options) {
+    addLabel(labelText);
+
+    return addComboBox(options);
+  }
+
+  private JComboBox<String> addComboBox(String[] options) {
+    setBottomOuterPadding(DEFAULT_OUTER_PADDING_BOTTOM);
+    setInnerPadding(BUTTON_INNER_PADDING, BUTTON_INNER_PADDING);
+
+    JComboBox<String> comboBox = new JComboBox<String>(options);
+
+    add(comboBox, gbc);
+
+    return comboBox;
   }
 }

@@ -8,20 +8,24 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import gui.components.FileSelector;
 import gui.workers.DirectoryHashWorker;
 
 public class MainPanel extends DefaultPanel implements ActionListener {
+  private static final String[] HASH_ALGORITHMS = { "MD5", "SHA-1", "SHA-256" };
 
   private JButton calculateHashButton;
   private JButton cancelButton;
+  private JComboBox<String> hashAlgorithmComboBox;
   private DirectoryHashWorker directoryHashWorker;
 
   protected void addComponents() {
     addButtonWithLabel("Select a file or directory to calculate it's hash:", "Click to select directory", this);
 
+    hashAlgorithmComboBox = addComboBoxWithLabel("Select the hashing algorithm:", HASH_ALGORITHMS);
     calculateHashButton = addButton("Calculate hash!", this);
     cancelButton = addButton("Stop hashing", this);
     cancelButton.setEnabled(false);
@@ -54,8 +58,10 @@ public class MainPanel extends DefaultPanel implements ActionListener {
       calculateHashButton.setEnabled(false);
       cancelButton.setEnabled(true);
 
-      (directoryHashWorker = new DirectoryHashWorker(state.currentDirectory, calculateHashButton, cancelButton, "MD5"))
-          .execute();
+      String hashAlgorithm = hashAlgorithmComboBox.getSelectedItem().toString();
+
+      (directoryHashWorker = new DirectoryHashWorker(state.currentDirectory, calculateHashButton, cancelButton,
+          hashAlgorithm)).execute();
 
     } catch (FileNotFoundException e) {
       errorDialog("The specified file or directory doesn't exist!");
