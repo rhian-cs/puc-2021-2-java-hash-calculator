@@ -76,10 +76,7 @@ public class DirectoryHashWorker extends SwingWorker<Void, String> {
     calculateHashButton.setEnabled(true);
     cancelButton.setEnabled(false);
 
-    String successMessage = filesCount + " files were processed.\nThe TSV report was saved to the directory:\n"
-        + outputFilePath.toString();
-
-    JOptionPane.showMessageDialog(null, successMessage, "Success!", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, successMessage(), "Success!", JOptionPane.INFORMATION_MESSAGE);
   }
 
   private long calculateFilesCount() throws IOException {
@@ -134,5 +131,12 @@ public class DirectoryHashWorker extends SwingWorker<Void, String> {
 
     outputFileBuffer.write(header);
     outputFileBuffer.newLine();
+  }
+
+  private String successMessage() {
+    String filesGrammarForm = filesCount >= 2 ? " files were" : " file was";
+
+    return filesCount + filesGrammarForm + " processed.\n" + "The TSV report was saved to the directory:\n"
+        + outputFilePath.toString();
   }
 }
