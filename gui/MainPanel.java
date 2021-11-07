@@ -27,7 +27,7 @@ public class MainPanel extends DefaultPanel implements ActionListener {
 
     hashAlgorithmComboBox = addComboBoxWithLabel("Select the hashing algorithm:", HASH_ALGORITHMS);
     calculateHashButton = addButton("Calculate hash!", this);
-    cancelButton = addButton("Stop hashing", this);
+    cancelButton = addButton("Cancel hashing", this);
     cancelButton.setEnabled(false);
   }
 
@@ -37,7 +37,7 @@ public class MainPanel extends DefaultPanel implements ActionListener {
     case "Calculate hash!":
       calculateHashAction();
       break;
-    case "Stop hashing":
+    case "Cancel hashing":
       calculateHashButton.setEnabled(true);
       cancelButton.setEnabled(false);
       directoryHashWorker.cancel(true);
