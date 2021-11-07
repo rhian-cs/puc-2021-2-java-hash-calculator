@@ -7,14 +7,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.AbstractMap.SimpleEntry;
 
 import javax.swing.JButton;
 import javax.swing.SwingWorker;
 
 import hash_calculators.FileHashCalculator;
 
-public class DirectoryHashWorker extends SwingWorker<Void, SimpleEntry> {
+public class DirectoryHashWorker extends SwingWorker<Void, String> {
   private String path;
   private long filesCount;
   private JButton calculateHashButton;
@@ -38,10 +37,9 @@ public class DirectoryHashWorker extends SwingWorker<Void, SimpleEntry> {
   }
 
   @Override
-  protected void process(List<SimpleEntry> hashesData) {
-    SimpleEntry<String, String> latestHashData = hashesData.get(hashesData.size() - 1);
-
-    System.out.println(latestHashData.getValue() + "; " + latestHashData.getKey());
+  protected void process(List<String> hashes) {
+    String latestHash = hashes.get(hashes.size() - 1);
+    System.out.println(latestHash);
   }
 
   @Override
@@ -76,8 +74,9 @@ public class DirectoryHashWorker extends SwingWorker<Void, SimpleEntry> {
 
   private void calculateAndOutputFileHash(String path) throws NoSuchAlgorithmException, IOException {
     String hashString = FileHashCalculator.getHash(path, "MD5");
-    SimpleEntry hashData = new SimpleEntry(hashString, path);
 
-    publish(hashData);
+    publish(hashString);
+
+    // System.out.println(path + ";\t" + hashString);
   }
 }
