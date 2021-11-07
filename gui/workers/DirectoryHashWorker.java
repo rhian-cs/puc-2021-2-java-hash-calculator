@@ -75,8 +75,10 @@ public class DirectoryHashWorker extends SwingWorker<Void, String> {
   private void calculateAndOutputFileHash(String path) throws NoSuchAlgorithmException, IOException {
     String hashString = FileHashCalculator.getHash(path, "MD5");
 
-    publish(hashString);
+    publish(formatHashData(path, hashString));
+  }
 
-    // System.out.println(path + ";\t" + hashString);
+  private String formatHashData(String path, String hashString) {
+    return path + '\t' + hashString;
   }
 }
