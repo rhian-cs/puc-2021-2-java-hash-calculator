@@ -90,6 +90,7 @@ public class DirectoryHashWorker extends SwingWorker<Void, String> {
 
     if (isDirectory) {
       System.out.println(directoryPath);
+      publish(formatHashData(directoryPath, ""));
     }
 
     Files.walk(directory).forEach(filePath -> {
