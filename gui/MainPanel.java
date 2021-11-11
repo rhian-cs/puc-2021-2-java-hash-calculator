@@ -38,6 +38,7 @@ public class MainPanel extends DefaultPanel implements ActionListener {
       calculateHashAction();
       break;
     case "Cancel hashing":
+      calculateHashButton.setText("Calculate hash!");
       calculateHashButton.setEnabled(true);
       cancelButton.setEnabled(false);
       directoryHashWorker.cancel(true);
@@ -56,6 +57,7 @@ public class MainPanel extends DefaultPanel implements ActionListener {
 
     try {
       calculateHashButton.setEnabled(false);
+      calculateHashButton.setText("Calculating...");
       cancelButton.setEnabled(true);
 
       String hashAlgorithm = hashAlgorithmComboBox.getSelectedItem().toString();

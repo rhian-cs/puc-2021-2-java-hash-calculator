@@ -73,6 +73,7 @@ public class DirectoryHashWorker extends SwingWorker<Void, String> {
       e.printStackTrace();
     }
 
+    calculateHashButton.setText("Calculate hash!");
     calculateHashButton.setEnabled(true);
     cancelButton.setEnabled(false);
 
