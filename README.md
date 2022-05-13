@@ -4,6 +4,8 @@ This project was built for the Security and Data Criptography subject in my Comp
 
 It was written in Java and is composed of a GUI to calculate MD5, SHA-1 and SHA-256 hashes of multiple files.
 
+You can download the latest release [here](https://github.com/rhian-cs/puc-2021-2-java-hash-calculator/releases/latest).
+
 ## Screenshots
 
 In the main window you can select the directory that you wish to calculate the files' hash:
